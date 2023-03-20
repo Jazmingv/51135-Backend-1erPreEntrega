@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "title": "Bolígrafo 'Panda Squishy' Wero",
+        "description": "El producto se vende por unidad- Diseños aleatorios segun disponibilidad de stock",
+        "price": 1571.70,
+        "thumbnail": "https://libreriaslevalle.com/35845-large_default/boligrafo-panda-squishy-wero.jpg",
+        "code": 34852,
+        "stock": 24
+    },
+    {
+        "id": 2,
+        "title": "Acuarela Fina x12 pastillas de colores Pebeo",
+        "description": "Fabricada a partir de pigmentos en polvo y goma arábiga, la Aquarelle Fine de Pébéo ofrece una gama equilibrada para su uso sobre papel de acuarela o cartón con un rendimiento y resultados más que óptimos. La profundidad del tono y la transparencia se retiene cuando se seca.",
+        "price": 10220.70,
+        "thumbnail": "https://libreriaslevalle.com/14583-large_default/acuarela-fina-x12-pastillas-de-colores-caja-redonda-metal-pebeo.jpg",
+        "code": 27081,
+        "stock": 33
+    },
+    {
+        "id": 3,
+        "title": "Agenda Classic Petróleo A5 Diaria VacaValiente",
+        "description": "Agenda de planificación diaria (hoja por dia) A5.",
+        "price": 8990.00,
+        "thumbnail": "https://libreriaslevalle.com/32679-large_default/agenda-classic-button-petroleo-a5-diaria-vacavaliente.jpg",
+        "code": 26183,
+        "stock": 71
+    },
+    {
+        "id": 4,
+        "title": "Set de acuarelas x24 pastillas Koh-I-noor",
+        "description": "El set de discos Koh-I-Noor es un conjunto de acuarelas profesionales de larga duración pero muy fáciles de usar. Cada disco puede ser encastrado con los otros simplemente girando para formar una torre única que ocupe poco espacio.",
+        "price": 4557.00,
+        "thumbnail": "https://libreriaslevalle.com/14011-large_default/set-de-acuarelas-x24-pastillas-de-225-mm-koh-i-noor.jpg",
+        "code": 30665,
+        "stock": 11
+    },
+    {
+        "id": 5,
+        "title": "Resaltadores Flash PASTEL x10 Pelikan",
+        "description": "Nuevo Resaltador de cuerpo plano y colores pastel. Diseño moderno y ergonómico que brinda un confortable agarre.",
+        "price": 4919.70,
+        "thumbnail": "https://libreriaslevalle.com/23500-large_default/resaltadores-flash-pastel-x10-colores-surtidos-pelikan.jpg",
+        "code": 29957,
+        "stock": 7
+    },
+    {
+        "id": 6,
+        "title": "Agenda Diaria 15x21cm Spring II Mooving",
+        "description": "Agenda de planificación diaria (hoja por dia) A5.",
+        "price": 4290.00,
+        "thumbnail": "https://libreriaslevalle.com/33355-large_default/agenda-diaria-15x21-cm-spring-ii-con-espiral-mooving.jpg",
+        "code": 29373,
+        "stock": 0
+    },
+    {
+        "id": 7,
+        "title": "Block de Notas Mickey & Minnie borde dorado Mooving",
+        "description": "Anotador tapas duras de 12,5x17,5 cm. Contiene x120 hojas de 80 gramos bordes dorados con 8 diferentes diseños de Mickey & Minnie Mouse.",
+        "price": 2150.00,
+        "thumbnail": "https://libreriaslevalle.com/23732-large_default/block-de-notas-mickey-minnie-con-8-disenos-de-hoja-y-borde-dorado-mooving.jpg",
+        "code": 31702,
+        "stock": 24
+    },
+    {
+        "id": 8,
+        "title": "Lápices Policromados Schwan Art x36 lata Stabilo",
+        "description": "Caja de metal conteniendo 36 lápices de colores policromados de la línea Schwan Stabilo. Colores brillantes y vibrantes, elaborados con pigmentos de alta calidad.",
+        "price": 12407.22,
+        "thumbnail": "https://libreriaslevalle.com/12985-large_default/lapices-policromados-schwan-art-x36-colores-surtidos-lata-stabilo.jpg",
+        "code": 28016,
+        "stock": 45
+    },
+    {
+        "id": 9,
+        "title": "Maletín Porta Laptop GRIS 2 cierres Onix",
+        "description": "Confeccionada en tela resistente e impermeable. Acolchado para disminuir riesgos ante la eventualidad de un golpe o caída. Diseño elegante y práctico con excelentes terminaciones y calidad de materiales.",
+        "price": 9900.00,
+        "thumbnail": "https://libreriaslevalle.com/14344-large_default/maletin-hombre-porta-laptop-gris-2-cierres-onix.jpg",
+        "code": 28338,
+        "stock": 58
+    },
+    {
+        "id": 10,
+        "title": "Microscopio con Proyector, Luz y Zoom Ocular TMPZ-C1200 Galileo",
+        "description": "Como herramienta educativa o como regalo, este instrumento logra un excelente desempeño. Microscopio didáctico con proyector, zoom, luz y espejo reflector. Cuenta con pantalla proyector Aumenta desde 50x hasta 1200x.",
+        "price": 17577.00,
+        "thumbnail": "https://libreriaslevalle.com/14436-large_default/microscopio-con-proyector-luz-y-zoom-ocular-tmpz-c1200-galileo.jpg",
+        "code": 27413,
+        "stock": 0
+    }
+]
