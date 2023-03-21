@@ -5,7 +5,7 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const file = __dirname + '/files/products.json';
+const file = __dirname + '../json/products.json';
 
 export default class ProductManager {
   constructor() {
