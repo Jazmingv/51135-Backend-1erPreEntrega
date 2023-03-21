@@ -61,12 +61,14 @@ export default class cartManager {
       return false;
     } else {
       const checkForProductInCart = getCart.filter((product) => product.id == productID);
-      if (!getCart || getCart.length == 0) {
+      if (!checkForProductInCart || checkForProductInCart.length == 0) {
         getCart.push(productID);
       } else {
         getCart.productID++;
       }
     }
+    fs.writeFileSync(this.filePath, JSON.stringify(this.carts));
+    return this.carts;
   };
 
   deletecart = (id) => {
