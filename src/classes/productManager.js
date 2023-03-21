@@ -30,6 +30,16 @@ export default class ProductManager {
     }
   };
 
+  getProductById = (id) => {
+    this.products = this.checkForFileAndReturnProducts();
+    const productByID = this.products.filter((product) => product.id == id);
+    if (!productByID || productByID.length == 0) {
+      return false;
+    } else {
+      return productByID;
+    }
+  };
+
   addProduct = (
     title,
     description,
@@ -68,18 +78,20 @@ export default class ProductManager {
     this.products = this.checkForFileAndReturnProducts();
     let product = this.products.find((product) => product.id == id);
     if (product) {
+      product.id = product.id;
       product.title = updatedProduct.title || product.title;
+      product.category = updatedProduct.category || product.category;
       product.description = updatedProduct.description || product.description;
       product.price = updatedProduct.price || product.price;
-      product.thumbnail = updatedProduct.thumbnail || product.thumbnail;
+      product.code = updatedProduct.code || product.code;
       product.stock = updatedProduct.stock || product.stock;
-      product.id = product.id;
+      product.status = updatedProduct.status || product.status
+      product.thumbnail = updatedProduct.thumbnail || product.thumbnail;
 
       fs.writeFileSync(this.filePath, JSON.stringify(this.products));
       return this.products;
     } else {
-      console.log(`This ID (${id}) does not exist.`);
-      return this.products;
+      return false;
     }
   };
 
@@ -93,16 +105,6 @@ export default class ProductManager {
       return this.products;
     } else {
       return false;
-    }
-  };
-
-  getProductById = (id) => {
-    this.products = this.checkForFileAndReturnProducts();
-    const productByID = this.products.filter((product) => product.id == id);
-    if (!productByID || productByID.length == 0) {
-      return false;
-    } else {
-      return productByID;
     }
   };
 }

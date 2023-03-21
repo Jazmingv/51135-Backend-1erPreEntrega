@@ -1,105 +1,84 @@
 import fs from "fs";
-import {fileURLToPath} from 'url';
-import { dirname } from 'path';
+import __dirname from "../utils.js";
+import ProductManager from "./productManager.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const file = __dirname + "/json/carts.json";
+const PRODUCTLIST = new ProductManager();
 
-const file = __dirname + '../json/products.json';
-
-export default class ProductManager {
+export default class cartManager {
   constructor() {
     this.filePath = file;
   }
 
   static id = 0;
 
-  checkForFileAndReturnProducts = () => {
-    let productList = fs.readFileSync(this.filePath, "utf-8");
-    this.products = JSON.parse(productList);
-    ProductManager.id = this.products.length;
-    return this.products;
+  checkForFileAndReturnCarts = () => {
+    let cartList = fs.readFileSync(this.filePath, "utf-8");
+    this.carts = JSON.parse(cartList);
+    cartManager.id = this.carts.length;
+    return this.carts;
   };
 
-  getProducts = (limit) => {
-    this.products = this.checkForFileAndReturnProducts();
+  getCarts = (limit) => {
+    this.carts = this.checkForFileAndReturnCarts();
     if (!limit) {
-      return this.products;
+      return this.carts;
     } else {
-      let productsArray = [];
+      let cartsArray = [];
       for (let i = 0; i < limit; i++) {
-        productsArray.push(this.products[i]);
+        cartsArray.push(this.carts[i]);
       }
-      return productsArray;
+      return cartsArray;
     }
   };
 
-  addProduct = (title, description, price, thumbnail, code, stock) => {
-    this.products = this.checkForFileAndReturnProducts();
-    const checkForDuplicatedCode = this.products.filter(
-      (product) => product.code === code
-    );
-    if (checkForDuplicatedCode.length !== 0) {
-      return `This code (${code}) already exists`;
-    }
-    if (title && description && price && thumbnail && code && stock) {
-      let product = {
-        id: ProductManager.id + 1,
-        title,
-        description,
-        price,
-        thumbnail,
-        code,
-        stock,
-      };
-      ProductManager.id++;
-      this.products.push(product);
-      fs.writeFileSync(this.filePath, JSON.stringify(this.products));
-      return this.products;
+  getCartById = (id) => {
+    this.carts = this.checkForFileAndReturnCarts();
+    const cartByID = this.carts.filter((cart) => cart.id == id);
+    if (!cartByID || cartByID.length == 0) {
+      return false;
     } else {
-      return console.log("Fill in all the fields to add a new product");
+      return cartByID;
     }
   };
 
-  updateProduct = (id, updatedProduct) => {
-    this.products = this.checkForFileAndReturnProducts();
-    let product = this.products.find((product) => product.id == id);
-    if (product) {
-      product.title = updatedProduct.title || product.title;
-      product.description = updatedProduct.description || product.description;
-      product.price = updatedProduct.price || product.price;
-      product.thumbnail = updatedProduct.thumbnail || product.thumbnail;
-      product.stock = updatedProduct.stock || product.stock;
-      product.id = product.id;
+  addCart = (products) => {
+    this.carts = this.checkForFileAndReturnCarts();
+    cartManager.id++;
+    let cart = {
+      id: cartManager.id,
+      products: products,
+    };
+    this.carts.push(cart);
+    fs.writeFileSync(this.filePath, JSON.stringify(this.carts));
+    return this.carts;
+  };
 
-      fs.writeFileSync(this.filePath, JSON.stringify(this.products));
-      return this.products;
+  addProductToCart = (cartID, productID) => {
+    this.carts = this.checkForFileAndReturnCarts();
+    const getCart = this.carts.filter((cart) => cart.id == cartID);
+    if (!getCart || getCart.length == 0) {
+      return false;
     } else {
-      console.log(`This ID (${id}) does not exist.`);
-      return this.products;
+      const checkForProductInCart = getCart.filter((product) => product.id == productID);
+      if (!getCart || getCart.length == 0) {
+        getCart.push(productID);
+      } else {
+        getCart.productID++;
+      }
     }
   };
 
-  deleteProduct = (id) => {
-    this.products = this.checkForFileAndReturnProducts();
-    const checkForID = this.products.findIndex((product) => product.id === id);
+  deletecart = (id) => {
+    this.carts = this.checkForFileAndReturnCarts();
+    const checkForID = this.carts.findIndex((cart) => cart.id == id);
 
     if (checkForID > -1) {
-      this.products.splice(checkForID, 1);
-      fs.writeFileSync(this.filePath, JSON.stringify(this.products));
-      return this.products;
+      this.carts.splice(checkForID, 1);
+      fs.writeFileSync(this.filePath, JSON.stringify(this.carts));
+      return this.carts;
     } else {
-      return `ID (${id}) not found or invalid`;
-    }
-  };
-
-  getProductById = (id) => {
-    this.products = this.checkForFileAndReturnProducts();
-    const productByID = this.products.find((product) => product.id === id);
-    if (productByID) {
-      return productByID;
-    } else {
-      return `ID (${id}) not found or invalid`;
+      return false;
     }
   };
 }
