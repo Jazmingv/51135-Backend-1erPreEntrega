@@ -85,14 +85,14 @@ export default class ProductManager {
 
   deleteProduct = (id) => {
     this.products = this.checkForFileAndReturnProducts();
-    const checkForID = this.products.findIndex((product) => product.id === id);
+    const checkForID = this.products.findIndex((product) => product.id == id);
 
     if (checkForID > -1) {
       this.products.splice(checkForID, 1);
       fs.writeFileSync(this.filePath, JSON.stringify(this.products));
       return this.products;
     } else {
-      return `ID (${id}) not found or invalid`;
+      return false;
     }
   };
 

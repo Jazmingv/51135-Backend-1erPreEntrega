@@ -23,7 +23,7 @@ ROUTER.get("/:pid", (req, res) => {
   let productByID = PRODUCTLIST.getProductById(productID);
   if (productByID == false) {
     res.status(400).send({
-      status: "Bad Request",
+      status: "Bad requested",
       message: `The ID you requested (${productID}) doesn't exist. Please try again with an existing ID.`
     });
   } else {
@@ -38,14 +38,14 @@ ROUTER.post("/", (req, res) => {
   let newProduct = req.body;
   if (!newProduct.title || !newProduct.description || !newProduct.category || !newProduct.price || !newProduct.code || !newProduct.stock) {
     res.status(400).send({
-      status: "Bad Request",
+      status: "Bad req",
       message: "Fill in all the fields to add a new product."
     });
   } else {
     let createProduct = PRODUCTLIST.addProduct(newProduct);
     if (createProduct == false) {
         res.status(400).send({
-            status: "Bad Request",
+            status: "Bad requested",
             message: `This code (${newProduct.code}) already exists`
           });
     }
@@ -58,15 +58,15 @@ ROUTER.post("/", (req, res) => {
     }    
 });
 
-ROUTER.put("/:userId", (request, response) => {
+ROUTER.put("/:userId", (req, res) => {
   console.log("Consumiendo api PUT /api/user..");
-  console.log(request.params);
-  let userId = parseInt(request.params.userId);
-  let userUpdated = request.body;
+  console.log(req.params);
+  let userId = parseInt(req.params.userId);
+  let userUpdated = req.body;
   console.log(`Buscando usuario a modificar por id: ${userId}`);
   const userPosition = users.findIndex((u) => u.id === userId);
   if (userPosition < 0) {
-    return response
+    return res
       .status(202)
       .send({ status: "info", error: "Usuario no encontrado" });
   }
@@ -76,34 +76,28 @@ ROUTER.put("/:userId", (request, response) => {
   users[userPosition] = userUpdated;
   console.log("Usuarios actuales: ");
   console.log(users);
-  return response.send({
+  return res.send({
     status: "Success",
     message: "Usuario Actualizado.",
     data: users[userPosition],
   }); //Si no se indica retorna status HTTP 200OK.
 });
 
-ROUTER.delete("/:userId", (request, response) => {
-  console.log("Consumiendo api DELETE /api/user..");
-  console.log(request.params);
-  let userId = parseInt(request.params.userId);
-  console.log(`Buscando usuario a eliminar por id: ${userId}`);
-  const usersSize = users.length;
-  const userPosition = users.findIndex((u) => u.id === userId);
-  if (userPosition < 0) {
-    return response
-      .status(202)
-      .send({ status: "info", error: "Usuario no encontrado" });
+ROUTER.delete("/:pid", (req, res) => {
+  let productID = req.params.pid;
+  console.log(productID);
+  let productByID = PRODUCTLIST.deleteProduct(productID);
+  if (productByID == false) {
+    res.status(400).send({
+      status: "Bad requested",
+      message: `The ID you requested (${productID}) doesn't exist. Please try again with an existing ID.`
+    });
+  } else {
+    res.status(200).send({
+      status: "OK",
+      message: productByID
+    });
   }
-  console.log("Usario encontrado para eliminar:");
-  console.log(users[userPosition]);
-  users.splice(userPosition, 1);
-  if (users.length === usersSize) {
-    return response
-      .status(500)
-      .send({ status: "error", error: "Usuario no se pudo borrar." });
-  }
-  return response.send({ status: "Success", message: "Usuario Eliminado." }); //Si no se indica retorna status HTTP 200OK.
 });
 
 export default ROUTER;
