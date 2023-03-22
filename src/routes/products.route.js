@@ -45,11 +45,11 @@ ROUTER.post("/", (req, res) => {
     !newProduct.stock
   ) {
     res.status(400).send({
-      status: "Bad req",
+      status: "Bad request",
       message: "Fill in all the fields to add a new product.",
     });
   } else {
-    let createProduct = PRODUCTLIST.addProduct(newProduct);
+    let createProduct = PRODUCTLIST.addProduct(newProduct.title, newProduct.category, newProduct.description, newProduct.price, newProduct.code, newProduct.stock, newProduct.status || true, newProduct.thumbnail || "");
     if (createProduct == false) {
       res.status(400).send({
         status: "Bad requested",

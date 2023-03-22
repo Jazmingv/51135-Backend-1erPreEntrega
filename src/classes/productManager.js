@@ -42,13 +42,13 @@ export default class ProductManager {
 
   addProduct = (
     title,
-    description,
     category,
+    description,
     price,
-    thumbnail,
     code,
-    status,
-    stock
+    stock,
+    thumbnail,
+    status
   ) => {
     this.products = this.checkForFileAndReturnProducts();
     const checkForDuplicatedCode = this.products.filter(
@@ -67,8 +67,9 @@ export default class ProductManager {
       code: code,
       stock: stock,
       status: status || true,
-      thumbnail: thumbnail || ""
+      thumbnail: thumbnail || "",
     };
+    console.log(product);
     this.products.push(product);
     fs.writeFileSync(this.filePath, JSON.stringify(this.products));
     return this.products;
@@ -85,7 +86,7 @@ export default class ProductManager {
       product.price = updatedProduct.price || product.price;
       product.code = updatedProduct.code || product.code;
       product.stock = updatedProduct.stock || product.stock;
-      product.status = updatedProduct.status || product.status
+      product.status = updatedProduct.status || product.status;
       product.thumbnail = updatedProduct.thumbnail || product.thumbnail;
 
       fs.writeFileSync(this.filePath, JSON.stringify(this.products));
