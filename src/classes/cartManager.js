@@ -56,15 +56,22 @@ export default class cartManager {
 
   addProductToCart = (cartID, productID) => {
     this.carts = this.checkForFileAndReturnCarts();
-    const getCart = this.carts.filter((cart) => cart.id == cartID);
-    if (!getCart || getCart.length == 0) {
+    console.log(this.carts);
+    let getCart;
+    for (let i = 0; i <= this.carts.length; i++) {
+      if (this.carts[i].id == cartID) {
+        getCart = this.carts[i];
+      }
+    }
+    if (!getCart) {
       return false;
     } else {
-      const checkForProductInCart = getCart.filter((product) => product.id == productID);
+      let products = getCart.products;
+      const checkForProductInCart = products.filter((prod) => prod.id == productID);
       if (!checkForProductInCart || checkForProductInCart.length == 0) {
-        getCart.push(productID);
+        products.push(productID);
       } else {
-        getCart.productID++;
+        products.productID++;
       }
     }
     fs.writeFileSync(this.filePath, JSON.stringify(this.carts));
