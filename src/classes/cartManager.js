@@ -63,6 +63,7 @@ export default class cartManager {
         getCart = this.carts[i];
       }
     }
+    console.log(getCart[0].products);
     if (!getCart) {
       return false;
     } else {
