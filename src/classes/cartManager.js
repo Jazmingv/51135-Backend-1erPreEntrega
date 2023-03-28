@@ -56,27 +56,34 @@ export default class cartManager {
 
   addProductToCart = (cartID, productID) => {
     this.carts = this.checkForFileAndReturnCarts();
-    console.log(this.carts[0].id);
     let getCart;
-    for (let i= 0; i <= this.carts.length; i++) {
+    for (let i= 0; i < this.carts.length; i++) {
       if (this.carts[i].id == cartID) {
         getCart = this.carts[i];
       }
     };
-    console.log(getCart);
-    // if (!getCart) {
-    //   return false;
-    // } else {
-    //   let products = getCart.products;
-    //   const checkForProductInCart = products.filter((prod) => prod.id == productID);
-    //   if (!checkForProductInCart || checkForProductInCart.length == 0) {
-    //     products.push(productID);
-    //   } else {
-    //     products.productID++;
-    //   }
-    // }
-    // fs.writeFileSync(this.filePath, JSON.stringify(this.carts));
-    // return this.carts;
+    if (!getCart) {
+      return false;
+    } else {
+      let productsList = getCart.products;
+      let prod;
+      for (let i= 0; i < productsList.length; i++) {
+        if (productsList[i].id == productID) {
+          prod = productsList[i];
+        }
+      };
+      if (!prod) {
+        let singleProduct = {
+          id: productID,
+          quantity: 1
+        };
+        productsList.push(singleProduct);
+      } else {
+        prod.quantity++;
+      }
+    }
+    fs.writeFileSync(this.filePath, JSON.stringify(this.carts));
+    return this.carts;
   };
 
   deletecart = (id) => {
